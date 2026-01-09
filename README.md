@@ -67,18 +67,6 @@ This mini project helps understand:
 
 ---
 
-## 📝 License
-
-This project is licensed under the **MIT License**, so you're free to use and modify it.
-
----
-
-## 🤝 Contributing
-
-Pull requests are welcome! For major changes, open an issue first to discuss what you'd like to improve.
-
----
-
 ## 💬 Contact
 
 Feel free to reach out if you have suggestions or questions!
