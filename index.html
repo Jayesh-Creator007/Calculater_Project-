@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Radio Button Calculator</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background: linear-gradient(to right, #c9d6ff, #e2e2e2);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card {
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      padding: 30px;
+      max-width: 500px;
+      width: 100%;
+    }
+
+    h1 {
+      color: #0077b6;
+      font-weight: 700;
+      font-size: 28px;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 14px;
+      color: #6c757d;
+      margin-bottom: 25px;
+    }
+
+    .form-label {
+      font-weight: 500;
+    }
+
+    .form-check-input:checked {
+      background-color: #0077b6;
+      border-color: #0077b6;
+    }
+
+    .btn {
+      font-weight: 600;
+      padding: 10px 25px;
+      border-radius: 25px;
+    }
+
+    #result {
+      font-size: 18px;
+      font-weight: bold;
+      color: green;
+      margin-top: 15px;
+      text-align: center;
+    }
+
+    .operation-group {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    @media (max-width: 400px) {
+      .operation-group {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .form-check {
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+    <h1>Simple Calculator</h1>
+    <p class="subtitle">🔘 Made using <strong>Radio Buttons</strong> for operation selection</p>
+
+    <div class="mb-3">
+      <label for="value1" class="form-label">Enter First Number</label>
+      <input type="number" class="form-control" id="value1" placeholder="Enter first number" />
+    </div>
+
+    <div class="mb-3">
+      <label for="value2" class="form-label">Enter Second Number</label>
+      <input type="number" class="form-control" id="value2" placeholder="Enter second number" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Select Operation</label>
+      <div class="operation-group">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="operation" id="add" value="1">
+          <label class="form-check-label" for="add">➕</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="operation" id="subtract" value="2">
+          <label class="form-check-label" for="subtract">➖</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="operation" id="multiply" value="3">
+          <label class="form-check-label" for="multiply">✖️</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="operation" id="divide" value="4">
+          <label class="form-check-label" for="divide">➗</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <button class="btn btn-primary" onclick="calculate()">Calculate</button>
+    </div>
+
+    <p id="result"></p>
+  </div>
+
+  <script>
+    function calculate() {
+      const value1 = parseFloat(document.getElementById("value1").value);
+      const value2 = parseFloat(document.getElementById("value2").value);
+      const operation = document.querySelector('input[name="operation"]:checked');
+      const resultEl = document.getElementById("result");
+
+      if (isNaN(value1) || isNaN(value2)) {
+        resultEl.innerText = "❌ Please enter both numbers.";
+        return;
+      }
+
+      if (!operation) {
+        resultEl.innerText = "⚠️ Please select an operation.";
+        return;
+      }
+
+      let result, label;
+
+      switch (parseInt(operation.value)) {
+        case 1:
+          result = value1 + value2;
+          label = "Sum";
+          break;
+        case 2:
+          result = value1 - value2;
+          label = "Difference";
+          break;
+        case 3:
+          result = value1 * value2;
+          label = "Product";
+          break;
+        case 4:
+          if (value2 === 0) {
+            resultEl.innerText = "🚫 Cannot divide by zero.";
+            return;
+          }
+          result = (value1 / value2).toFixed(2);
+          label = "Quotient";
+          break;
+      }
+
+      resultEl.innerText = `${label} of ${value1} & ${value2} is ${result}`;
+    }
+  </script>
+</body>
+
+</html>
