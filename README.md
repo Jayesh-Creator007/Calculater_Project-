@@ -49,8 +49,7 @@ This project demonstrates DOM manipulation, input handling, validation, and clea
 ```
 /project-folder
   ├── index.html
-  ├── README.md
-  └── screenshot.png  (optional)
+  └── README.md
 ```
 
 ---
